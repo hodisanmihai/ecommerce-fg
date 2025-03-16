@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 @import "tailwindcss";
 
 :root {
@@ -22,5 +24,161 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat";
+}
+
+@keyframes move {
+  100% {
+    transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
+}
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #fbf8ef;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background span {
+  width: 50vmin;
+  height: 50vmin;
+  border-radius: 50vmin;
+  backface-visibility: hidden;
+  position: absolute;
+  animation: move;
+  animation-duration: 50;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.background span:nth-child(0) {
+  color: #dfd1ff;
+  top: 75%;
+  left: 38%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: 12vw -8vh;
+  box-shadow: 100vmin 0 12.778958637525442vmin currentColor;
+}
+.background span:nth-child(1) {
+  color: #dfd1ff;
+  top: 24%;
+  left: 95%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -11vw -4vh;
+  box-shadow: 100vmin 0 13.227368185333043vmin currentColor;
+}
+.background span:nth-child(2) {
+  color: #dfd1ff;
+  top: 37%;
+  left: 40%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: 21vw -20vh;
+  box-shadow: 100vmin 0 13.296429826188215vmin currentColor;
+}
+.background span:nth-child(3) {
+  color: #dfd1ff;
+  top: 92%;
+  left: 98%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -3vw 21vh;
+  box-shadow: 100vmin 0 13.348991792669082vmin currentColor;
+}
+.background span:nth-child(4) {
+  color: #fdf1ff;
+  top: 10%;
+  left: 95%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -5vw -13vh;
+  box-shadow: -100vmin 0 13.072109793487808vmin currentColor;
+}
+.background span:nth-child(5) {
+  color: #fdf1ff;
+  top: 90%;
+  left: 14%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: 25vw -10vh;
+  box-shadow: 100vmin 0 12.729043191968204vmin currentColor;
+}
+.background span:nth-child(6) {
+  color: #fdf1ff;
+  top: 89%;
+  left: 89%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: 21vw 3vh;
+  box-shadow: -100vmin 0 12.945066226089034vmin currentColor;
+}
+.background span:nth-child(7) {
+  color: #fdf1ff;
+  top: 73%;
+  left: 96%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -12vw -10vh;
+  box-shadow: 100vmin 0 12.75143531572954vmin currentColor;
+}
+.background span:nth-child(8) {
+  color: #fdf1ff;
+  top: 35%;
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: 8vw -19vh;
+  box-shadow: -100vmin 0 13.452757990397386vmin currentColor;
+}
+.background span:nth-child(9) {
+  color: #dfd1ff;
+  top: 65%;
+  left: 42%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -18vw 6vh;
+  box-shadow: -100vmin 0 13.084831663255084vmin currentColor;
+}
+.background span:nth-child(10) {
+  color: #dfd1ff;
+  top: 94%;
+  left: 88%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -8vw -12vh;
+  box-shadow: -100vmin 0 12.706887498790216vmin currentColor;
+}
+.background span:nth-child(11) {
+  color: #dfd1ff;
+  top: 17%;
+  left: 23%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+  transform-origin: -18vw -4vh;
+  box-shadow: 100vmin 0 13.160530671649742vmin currentColor;
+}
+
+/* Add this to your global CSS or Tailwind config */
+
+/* Glassmorphism with gradient */
+.glassmorphism-gradient {
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025),
+    rgba(255, 255, 255, 0)
+  ); /* Gradient from top to transparent */
+}
+
+.costumShadow {
+  -webkit-box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.25);
 }
