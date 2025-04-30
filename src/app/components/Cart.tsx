@@ -6,7 +6,7 @@ import CartElements from "./CartElements";
 
 const Cart = () => {
   return (
-    <div className="w-screen h-screen fixed bg-black/20 z-10 backdrop-blur-xs flex items-center justify-end">
+    <div className="w-screen h-screen fixed bg-black/20 z-10 backdrop-blur-xs hidden items-center justify-end">
       {/* Cart Container */}
       <div className="w-[470px] h-[95%] bg-white md:mr-10 ml-5 mr-5 rounded-2xl flex flex-col items-center">
         {/* Top Content */}

@@ -49,8 +49,23 @@ export default {
       type: "string",
     },
     {
-      name: "details",
-      title: "Detalii produs",
+      name: "detail1",
+      title: "Detalii produs-1",
+      type: "string",
+    },
+    {
+      name: "details2",
+      title: "Detalii produs-2",
+      type: "string",
+    },
+    {
+      name: "details3",
+      title: "Detalii produs-3",
+      type: "string",
+    },
+    {
+      name: "details4",
+      title: "Detalii produs-4",
       type: "string",
     },
     {

@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { getProducts } from "@/sanity/getProducts";
+import Link from "next/link";
+import { component } from "sanity/structure";
 
 // Definim tipul pentru produs
 interface Product {
@@ -53,9 +55,12 @@ const ProductCards = () => {
               <h3 className="font-extrabold text-lg md:text-[16px] text-center text-gray-800">
                 {product.name}
               </h3>
-              <button className="w-full py-2 rounded-full bg-[#DFD1FF] text-[18px] text-gray-800 font-semibold transition-transform duration-300 hover:bg-[#c0a2ff] hover:scale-95">
+              <Link
+                href={`/productpage/${product._id}`}
+                className="w-full py-2 rounded-full bg-[#DFD1FF] text-[18px] text-gray-800 font-semibold transition-transform duration-300 hover:bg-[#c0a2ff] hover:scale-95 text-center"
+              >
                 Vezi detalii
-              </button>
+              </Link>
               <button className="w-full py-2 rounded-full bg-[#D5F05F] text-[18px] text-gray-800 font-semibold transition-transform duration-300 hover:bg-[#a7e25f] hover:scale-95">
                 Adaugă
               </button>
