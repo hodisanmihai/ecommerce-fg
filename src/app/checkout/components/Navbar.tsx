@@ -7,8 +7,9 @@ import {
   faBars,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { Undo2 } from "lucide-react";
 import Link from "next/link";
-import { useCart } from "@/app/Cart/components/CartContext"; // Importă useCart pentru a accesa contextul
+import { useCart } from "@/app/Cart/components/CartContext"; // Importă contextul coșului
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,16 +24,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full h-[70px] fixed glassmorphism-gradient flex items-center justify-center z-5 text-[#333]">
+    <div className="w-full h-[70px] fixed glassmorphism-gradient flex items-center justify-center z-5 text-[#333] top-0">
       <div className="w-[95%] h-[90%] flex items-center justify-between">
         {/* Stânga - Logo & Meniu */}
         <div className="flex items-center">
           <div className="text-4xl md:text-6xl">LOGO</div>
           <div className="hidden md:flex ml-12 text-[20px] gap-6">
-            <Link href="#products">Produse</Link>
-            <Link href="#about">About</Link>
-            <Link href="#contact">Contact</Link>
+            <Link href="/produse">Produse</Link>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
             <Link href="/faq">Faq</Link>
+            <Link href="/" className="flex items-center">
+              <Undo2 className="w-6 h-6 text-gray-800 cursor-pointer" />
+            </Link>
           </div>
         </div>
 
@@ -40,12 +44,12 @@ const Navbar = () => {
         <div className="flex items-center gap-4 relative">
           {/* Coș de cumpărături */}
           <div
-            className="relative"
-            onClick={handleCartToggle} // Schimbă starea cart-ului
+            className="relative hidden"
+            onClick={handleCartToggle} // Folosește handleCartToggle pentru a comuta starea coșului
           >
             <FontAwesomeIcon
               icon={faCartShopping}
-              className="text-4xl cursor-pointer"
+              className="text-4xl cursor-pointer "
             />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">

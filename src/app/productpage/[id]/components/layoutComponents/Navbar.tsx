@@ -7,12 +7,21 @@ import {
   faBars,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
 import { Undo2 } from "lucide-react";
+import Link from "next/link";
+import { useCart } from "@/app/Cart/components/CartContext"; // Importă contextul coșului
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const cartCount = 0; // Simulează numărul de produse din coș
+  const { cart, isCartOpen, setCartOpen } = useCart(); // Obținem starea coșului și funcțiile din context
+  const cartCount = cart.reduce(
+    (total, item) => total + (item.quantity || 1),
+    0
+  ); // Obținem numărul de produse din coș
+
+  const handleCartToggle = () => {
+    setCartOpen(!isCartOpen); // Comută starea cart-ului
+  };
 
   return (
     <div className="w-full h-[70px] fixed glassmorphism-gradient flex items-center justify-center z-5 text-[#333]">
@@ -34,8 +43,14 @@ const Navbar = () => {
         {/* Dreapta - Coș + Burger Menu */}
         <div className="flex items-center gap-4 relative">
           {/* Coș de cumpărături */}
-          <div className="relative">
-            <FontAwesomeIcon icon={faCartShopping} className="text-4xl" />
+          <div
+            className="relative"
+            onClick={handleCartToggle} // Folosește handleCartToggle pentru a comuta starea coșului
+          >
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className="text-4xl cursor-pointer"
+            />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">
                 {cartCount}

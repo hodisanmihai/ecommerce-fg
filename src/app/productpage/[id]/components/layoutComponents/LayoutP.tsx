@@ -65,7 +65,7 @@ const LayoutP: React.FC<LayoutPProps> = ({ product }) => {
   ];
 
   return (
-    <div className="w-full min-h-[800px] md:h-[800px] md:mt20 mt-20 flex justify-center items-center">
+    <div className="w-full min-h-[800px] md:h-[800px] md:mt20 mt-20 flex justify-center items-center mb-12">
       {/* Container */}
       <div className="w-[90%] md:w-[80%] h-[90%] bg-white/70 shadow-xl rounded-2xl flex items-center justify-center p-5 md:p-0">
         {/* Element */}
@@ -73,7 +73,7 @@ const LayoutP: React.FC<LayoutPProps> = ({ product }) => {
           {/* left */}
           <div className="w-full md:w-[45%] h-full flex flex-col mb-4 md:mb-0">
             <Images images={images} /> {/* Pass the images array here */}
-            <BottomContent price={product.price} />
+            <BottomContent product={product} />
           </div>
 
           {/* right */}
