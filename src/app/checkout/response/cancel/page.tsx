@@ -1,6 +1,7 @@
 "use client";
 
 import Background from "@/app/components/Background";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -32,12 +33,12 @@ const Page = () => {
           Ne pare rău pentru asta! Poți încerca din nou sau poți contacta echipa
           noastră de suport pentru asistență.
         </p>
-        <a
+        <Link
           href="/"
           className="mt-6 inline-block px-8 py-3 text-white bg-red-600 rounded-full text-lg font-semibold hover:bg-red-700 transform transition-all duration-300 ease-in-out hover:scale-105"
         >
           Întoarce-te la magazin
-        </a>
+        </Link>
       </div>
     </div>
   );

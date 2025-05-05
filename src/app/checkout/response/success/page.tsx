@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Background from "@/app/components/Background";
+import Link from "next/link";
 
 const Page = () => {
   useEffect(() => {
@@ -95,12 +96,12 @@ const Page = () => {
           timp. Între timp, te poți întoarce la magazin pentru a explora mai
           multe oferte.
         </p>
-        <a
+        <Link
           href="/"
           className="mt-6 inline-block px-8 py-3 text-white hover:text-[#333] bg-teal-600 rounded-full text-lg font-semibold hover:bg-[#D5F05F] transform transition-all duration-300 ease-in-out hover:scale-105"
         >
           Întoarce-te la magazin
-        </a>
+        </Link>
       </div>
     </div>
   );

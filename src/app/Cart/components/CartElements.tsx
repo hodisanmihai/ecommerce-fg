@@ -31,6 +31,8 @@ const CartElements = ({ product }: CartElementsProps) => {
       {/* Image content */}
       <div className="w-[30%] h-full bg-blue-500">
         <Image
+          width={640}
+          height={640}
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover"

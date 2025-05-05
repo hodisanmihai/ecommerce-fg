@@ -1,19 +1,28 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
+// Inițializează Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-04-30.basil", // folosește o versiune stabilă
 });
 
+// Definirea tipului pentru un articol din coș
+type CartItem = {
+  name: string;
+  price: number;
+  quantity: number;
+};
+
 export async function POST(req: Request) {
   try {
-    const { cartItems } = await req.json();
+    // Extrage cartItems din corpul cererii, aplicând tipul CartItem[]
+    const { cartItems }: { cartItems: CartItem[] } = await req.json();
 
     console.log("cartItems:", cartItems); // vezi ce primești
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: cartItems.map((item: any) => ({
+      line_items: cartItems.map((item) => ({
         price_data: {
           currency: "ron",
           product_data: {
