@@ -1,41 +1,27 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useForm } from "./context/FormContext"; // Importăm contextul pentru a salva datele
 
 interface FormProps {
   onFormValidityChange: (isValid: boolean) => void; // Funcție trimisă de Payment
 }
 
 const Form = ({ onFormValidityChange }: FormProps) => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [county, setCounty] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [postalCode, setPostalCode] = useState("");
+  const { formData, setFormData } = useForm(); // Accesăm contextul pentru a salva datele formularului
 
   useEffect(() => {
     const isFormValid =
-      fullName.trim() !== "" &&
-      email.trim() !== "" &&
-      phone.trim() !== "" &&
-      county.trim() !== "" &&
-      city.trim() !== "" &&
-      address.trim() !== "" &&
-      postalCode.trim() !== "";
+      formData.fullName.trim() !== "" &&
+      formData.email.trim() !== "" &&
+      formData.phone.trim() !== "" &&
+      formData.county.trim() !== "" &&
+      formData.city.trim() !== "" &&
+      formData.address.trim() !== "" &&
+      formData.postalCode.trim() !== "";
 
     onFormValidityChange(isFormValid);
-  }, [
-    fullName,
-    email,
-    phone,
-    county,
-    city,
-    address,
-    postalCode,
-    onFormValidityChange,
-  ]);
+  }, [formData, onFormValidityChange]);
 
   return (
     <div className="w-[90%] h-full flex flex-col gap-3">
@@ -52,8 +38,10 @@ const Form = ({ onFormValidityChange }: FormProps) => {
           type="text"
           className="form-input-style"
           placeholder="Introdu numele și prenumele"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          value={formData.fullName}
+          onChange={(e) =>
+            setFormData({ ...formData, fullName: e.target.value })
+          }
         />
       </div>
 
@@ -71,8 +59,10 @@ const Form = ({ onFormValidityChange }: FormProps) => {
             type="email"
             className="form-input-style"
             placeholder="Introdu adresa de email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
           />
         </div>
 
@@ -88,8 +78,10 @@ const Form = ({ onFormValidityChange }: FormProps) => {
             type="tel"
             className="form-input-style"
             placeholder="Introdu numărul de telefon"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
           />
         </div>
       </div>
@@ -108,8 +100,10 @@ const Form = ({ onFormValidityChange }: FormProps) => {
             type="text"
             className="form-input-style"
             placeholder="Introdu județul"
-            value={county}
-            onChange={(e) => setCounty(e.target.value)}
+            value={formData.county}
+            onChange={(e) =>
+              setFormData({ ...formData, county: e.target.value })
+            }
           />
         </div>
 
@@ -125,8 +119,8 @@ const Form = ({ onFormValidityChange }: FormProps) => {
             type="text"
             className="form-input-style"
             placeholder="Introdu localitatea"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={formData.city}
+            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
           />
         </div>
       </div>
@@ -145,8 +139,10 @@ const Form = ({ onFormValidityChange }: FormProps) => {
             type="text"
             className="form-input-style"
             placeholder="Introdu adresa completă"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            value={formData.address}
+            onChange={(e) =>
+              setFormData({ ...formData, address: e.target.value })
+            }
           />
         </div>
 
@@ -162,8 +158,10 @@ const Form = ({ onFormValidityChange }: FormProps) => {
             type="text"
             className="form-input-style"
             placeholder="Introdu codul poștal"
-            value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value)}
+            value={formData.postalCode}
+            onChange={(e) =>
+              setFormData({ ...formData, postalCode: e.target.value })
+            }
           />
         </div>
       </div>

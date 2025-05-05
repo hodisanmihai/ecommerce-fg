@@ -25,6 +25,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-responsive": "^10.0.1",
+    "resend": "^4.5.0",
     "sanity": "^3.79.0",
     "stripe": "^18.1.0",
     "styled-components": "^6.1.15"

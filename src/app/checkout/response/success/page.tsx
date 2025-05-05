@@ -1,13 +1,75 @@
 "use client";
 
+import { useEffect } from "react";
 import Background from "@/app/components/Background";
 
 const Page = () => {
+  useEffect(() => {
+    const sendEmail = async () => {
+      try {
+        // Recuperarea datelor din localStorage
+        const fullName = localStorage.getItem("fullName");
+        const email = localStorage.getItem("email");
+        const phone = localStorage.getItem("phone");
+        const county = localStorage.getItem("county");
+        const city = localStorage.getItem("city");
+        const address = localStorage.getItem("address");
+        const postalCode = localStorage.getItem("postalCode");
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const totalAmount = parseFloat(
+          localStorage.getItem("totalAmount") || "0"
+        );
+
+        if (
+          !fullName ||
+          !email ||
+          !phone ||
+          !county ||
+          !city ||
+          !address ||
+          !postalCode ||
+          !cart ||
+          !totalAmount
+        ) {
+          throw new Error("Nu s-au găsit datele necesare din localStorage.");
+        }
+
+        const orderData = {
+          name: fullName,
+          email: email,
+          phone: phone,
+          cart: cart,
+          totalAmount: totalAmount,
+        };
+
+        // Trimite cererea POST către API-ul de trimitere a emailului
+        const response = await fetch("/api/sendEmail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        });
+
+        if (!response.ok) {
+          throw new Error("A apărut o eroare la trimiterea emailului.");
+        }
+
+        const data = await response.json();
+        console.log("Email trimis cu succes:", data);
+      } catch (error) {
+        console.error("Eroare la trimiterea emailului:", error);
+      }
+    };
+
+    // Apelează funcția care trimite email-ul
+    sendEmail();
+  }, []);
+
   return (
-    <div className="relative flex items-center justify-center min-h-screen ">
+    <div className="relative flex items-center justify-center min-h-screen">
       <Background />
       <div className="absolute inset-0 bg-black opacity-10"></div>{" "}
-      {/* Overlay pentru a face textul mai vizibil */}
       <div className="relative z-10 text-center p-8 bg-white rounded-xl shadow-2xl max-w-lg w-full transform transition-all duration-500 ease-in-out hover:scale-105">
         <div className="mb-6">
           <svg
@@ -26,7 +88,7 @@ const Page = () => {
           </svg>
         </div>
         <h1 className="text-4xl font-semibold text-gray-800 mb-4">
-          🎉 Comanda a fost plasata cu succes!
+          🎉 Comanda a fost plasată cu succes!
         </h1>
         <p className="text-lg text-gray-700 mb-6">
           Mulțumim pentru achiziție! Vei primi un email de confirmare în scurt

@@ -5,6 +5,7 @@ import "./animatedCheckbox.css";
 import { getCurierPrice } from "@/sanity/getCurier";
 import { useCart } from "@/app/Cart/components/CartContext";
 import { loadStripe } from "@stripe/stripe-js";
+import { useForm } from "../context/FormContext";
 
 interface PaymentProps {
   isFormValid: boolean;
@@ -14,6 +15,7 @@ const Payment: React.FC<PaymentProps> = ({ isFormValid }) => {
   const { cart } = useCart();
   const [selectedPayment, setSelectedPayment] = useState<string>("");
   const [curierPrice, setCurierPrice] = useState<number>(0);
+  const { formData } = useForm();
 
   useEffect(() => {
     const fetchCurierPrice = async () => {
@@ -91,6 +93,26 @@ const Payment: React.FC<PaymentProps> = ({ isFormValid }) => {
     }
   };
 
+  // Funcția care redirecționează utilizatorul la succes
+  const handleCashPayment = () => {
+    if (selectedPayment === "cash") {
+      // Aici se face redirecționarea
+      window.location.href = "/checkout/response/success"; // Redirecționăm direct
+    }
+  };
+
+  const saveOrderDataToLocalStorage = () => {
+    localStorage.setItem("fullName", formData.fullName);
+    localStorage.setItem("email", formData.email);
+    localStorage.setItem("phone", formData.phone);
+    localStorage.setItem("county", formData.county);
+    localStorage.setItem("city", formData.city);
+    localStorage.setItem("address", formData.address);
+    localStorage.setItem("postalCode", formData.postalCode);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("totalAmount", (subtotal + curierPrice).toFixed(2));
+  };
+
   return (
     <div className="w-full h-full">
       <div className="w-full h-full flex flex-col items-center justify-around text-[#333]">
@@ -148,7 +170,15 @@ const Payment: React.FC<PaymentProps> = ({ isFormValid }) => {
 
           <button
             disabled={!isFormValid || !selectedPayment}
-            onClick={handleStripeCheckout} // Apelăm funcția pentru a începe checkout-ul
+            onClick={() => {
+              saveOrderDataToLocalStorage(); // salvează datele întâi
+
+              if (selectedPayment === "card") {
+                handleStripeCheckout();
+              } else {
+                handleCashPayment();
+              }
+            }}
             className={`text-center w-full py-2 rounded-full text-[18px] text-gray-800 font-semibold transition-transform duration-300 ${
               isFormValid && selectedPayment
                 ? "bg-[#D5F05F] hover:bg-[#a7e25f] hover:scale-95"
