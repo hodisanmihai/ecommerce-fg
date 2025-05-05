@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="w-full md:w-1/2 h-auto flex flex-col justify-center items-center gap-6 text-center md:text-left px-6">
         {/* Text */}
         <div className="w-[90%] md:w-[60%] flex flex-col gap-4">
-          <h1 className="font-extrabold text-4xl md:text-[64px] leading-tight">
+          <h1 className="font-extrabold text-4xl md:text-[64px] leading-tight pt-6 md:pt-0">
             Sustenabilitate cu Stil
           </h1>
           <h3 className="font-normal text-lg md:text-[20px]">
