@@ -1,7 +1,4 @@
-import { defineType } from "sanity";
-import { Rule } from "sanity";
-
-export default {
+const productSchema = {
   name: "product", // Numele tipului de document
   title: "Product", // Titlul care apare în Sanity Studio
   type: "document", // Tipul documentului
@@ -19,7 +16,6 @@ export default {
         hotspot: true,
       },
     },
-
     {
       name: "price",
       title: "Pret",
@@ -84,3 +80,5 @@ export default {
     },
   ],
 };
+
+export default productSchema;

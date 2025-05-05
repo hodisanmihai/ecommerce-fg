@@ -1,4 +1,4 @@
-export default {
+const curierSchema = {
   name: "curier", // Numele tipului de document
   title: "Pret Curier", // Titlul care apare în Sanity Studio
   type: "document", // Tipul documentului
@@ -10,3 +10,5 @@ export default {
     },
   ],
 };
+
+export default curierSchema;
