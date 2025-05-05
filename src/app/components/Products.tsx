@@ -7,7 +7,7 @@ const Products = () => {
   return (
     <div
       className="z-0 w-screen h-full  flex flex-col items-center justify-center text-[#333] py-10"
-      id="products"
+      id="produse"
     >
       {/* Container principal */}
       <div className="w-full md:w-[80%] h-auto flex flex-col justify-between items-center p-6">

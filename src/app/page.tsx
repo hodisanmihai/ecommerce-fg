@@ -6,19 +6,18 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Mission from "./components/Mission";
 import Products from "./components/Products";
-import Cart from "./Cart/components/Cart"; // Importăm Cart
+import Cart from "./Cart/components/Cart";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Faq from "./components/Faq";
 import Footer from "./components/Footer";
-import { useCart } from "./Cart/components/CartContext"; // Importăm useCart pentru a accesa contextul
+import { useCart } from "./Cart/components/CartContext";
 
 export default function Home() {
-  const { isCartOpen, setCartOpen } = useCart(); // Obținem starea și funcția de deschidere a cart-ului
-
+  const { isCartOpen, setCartOpen } = useCart();
   return (
     <div className="overflow-x-hidden">
       <Background />
-      {/* Dacă cart-ul este deschis, îl afișăm */}
       {isCartOpen && <Cart onClose={() => setCartOpen(false)} />}
       <Navbar />
       <Hero />
@@ -26,6 +25,7 @@ export default function Home() {
       <Products />
       <About />
       <Contact />
+      <Faq />
       <Footer />
     </div>
   );

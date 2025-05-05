@@ -58,11 +58,17 @@ const Cart = ({ onClose }: { onClose: () => void }) => {
             </div>
             {/* Item Stack */}
             <div className="w-full h-[65%] overflow-y-auto pl-10 pr-10">
-              {cart
-                .filter((product) => product && product.id) // ✅ filtrăm produsele valide
-                .map((product) => (
-                  <CartElements key={product.id} product={product} />
-                ))}
+              {cart.length === 0 ? (
+                <div className="text-center text-gray-500 text-lg ">
+                  Coșul este gol
+                </div>
+              ) : (
+                cart
+                  .filter((product) => product && product.id)
+                  .map((product) => (
+                    <CartElements key={product.id} product={product} />
+                  ))
+              )}
             </div>
 
             {/* Bottom content */}

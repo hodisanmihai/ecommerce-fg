@@ -42,7 +42,10 @@ const Mission = () => {
   ];
 
   return (
-    <div className="z-0 w-full h-full flex flex-col items-center justify-center text-[#333] py-10">
+    <div
+      className="z-0 w-full h-full flex flex-col items-center justify-center text-[#333] py-10"
+      id="mission"
+    >
       {/* Container principal */}
       <div className="w-full md:w-[80%] h-auto flex flex-col justify-between items-center p-6">
         {/* Titluri */}

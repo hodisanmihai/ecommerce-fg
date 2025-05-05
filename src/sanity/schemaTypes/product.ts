@@ -19,25 +19,7 @@ export default {
         hotspot: true,
       },
     },
-    {
-      name: "id",
-      title: "Product ID",
-      type: "number",
-      validation: (Rule: Rule) =>
-        Rule.required().custom(async (id: number, context: any) => {
-          if (!id) return "ID-ul este obligatoriu!";
 
-          const client = context.getClient({ apiVersion: "2024-03-14" });
-
-          // Verificăm dacă există deja un produs cu același ID
-          const existingProduct = await client.fetch(
-            `*[_type == "product" && id == $id][0]`,
-            { id }
-          );
-
-          return existingProduct ? "ID-ul este deja folosit!" : true;
-        }),
-    },
     {
       name: "price",
       title: "Pret",

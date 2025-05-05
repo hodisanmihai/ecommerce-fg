@@ -2,10 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="overflow-hidden overscroll-none z-0 w-screen h-screen bg-[#D5F05F] flex flex-col md:flex-row items-center justify-around text-[#333]">
+    <div className="pt-12 md:pt-0 overflow-hidden overscroll-none z-0 w-screen h-screen bg-[#D5F05F] flex flex-col md:flex-row items-center justify-around text-[#333]">
       {/* Stanga */}
       <div className="w-full md:w-1/2 h-auto flex flex-col justify-center items-center gap-6 text-center md:text-left px-6">
         {/* Text */}
@@ -20,12 +21,18 @@ const Hero = () => {
         </div>
         {/* CTA */}
         <div className="w-full md:w-[60%] flex flex-col gap-10 mt-12">
-          <button className="w-full py-3 rounded-full bg-[#FBF8EF] text-lg font-semibold transition hover:scale-105 hover:bg-[#f0e8d2]">
+          <Link
+            href="#mission"
+            className="text-center w-full py-3 rounded-full bg-[#FBF8EF] text-lg font-semibold transition hover:scale-105 hover:bg-[#f0e8d2]"
+          >
             Explorează
-          </button>
-          <button className="w-full py-3 rounded-full bg-[#DFD1FF] text-lg font-semibold transition hover:scale-105 hover:bg-[#cbb4ff]">
+          </Link>
+          <Link
+            href="#produse"
+            className="text-center w-full py-3 rounded-full bg-[#DFD1FF] text-lg font-semibold transition hover:scale-105 hover:bg-[#cbb4ff]"
+          >
             Descoperă colecția
-          </button>
+          </Link>
         </div>
       </div>
 
