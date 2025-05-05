@@ -52,9 +52,16 @@ export const handleStripeWebhook = async (req: Request, res: Response) => {
 
     // Răspuns de succes
     res.json({ received: true });
-  } catch (err: any) {
-    console.error("Eroare la procesarea webhook-ului Stripe:", err);
-    // Răspuns de eroare cu mesaj detaliat
-    res.status(400).send(`Webhook error: ${(err as Error).message}`);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      // Accesăm mesajul erorii doar dacă `err` este o instanță de `Error`
+      console.error("Eroare la procesarea webhook-ului Stripe:", err);
+      // Răspuns de eroare cu mesaj detaliat
+      res.status(400).send(`Webhook error: ${err.message}`);
+    } else {
+      // Dacă `err` nu este de tipul `Error`, tratăm ca un tip necunoscut
+      console.error("Eroare necunoscută:", err);
+      res.status(400).send("Webhook error: Eroare necunoscută");
+    }
   }
 };

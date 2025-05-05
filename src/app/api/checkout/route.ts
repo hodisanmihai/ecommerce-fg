@@ -38,15 +38,25 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ id: session.id });
-  } catch (error: any) {
-    console.error(
-      "Eroare la crearea sesiunii de checkout:",
-      error.message,
-      error
-    );
-    return NextResponse.json(
-      { error: error.message || "Unknown server error" },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    // Verificăm dacă `error` este de tipul `Error`
+    if (error instanceof Error) {
+      console.error(
+        "Eroare la crearea sesiunii de checkout:",
+        error.message,
+        error
+      );
+      return NextResponse.json(
+        { error: error.message || "Unknown server error" },
+        { status: 500 }
+      );
+    } else {
+      // Dacă eroarea nu este o instanță de `Error`, o tratăm ca fiind necunoscută
+      console.error("Eroare necunoscută:", error);
+      return NextResponse.json(
+        { error: "Unknown error occurred" },
+        { status: 500 }
+      );
+    }
   }
 }
