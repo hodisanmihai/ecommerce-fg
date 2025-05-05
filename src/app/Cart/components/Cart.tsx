@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Undo2 } from "lucide-react";
 import CartElements from "./CartElements";
@@ -12,7 +14,7 @@ const roundPrice = (price: number): string => {
 };
 
 const Cart = ({ onClose }: { onClose: () => void }) => {
-  const { cart, clearCart, isCartOpen } = useCart(); // Destructurăm datele din contextul coșului
+  const { cart, isCartOpen } = useCart(); // Destructurăm datele din contextul coșului
   const [curierPrice, setCurierPrice] = useState(0);
 
   useEffect(() => {

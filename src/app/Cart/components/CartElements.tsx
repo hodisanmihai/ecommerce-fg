@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { Trash2 } from "lucide-react";
 import { useCart } from "./CartContext"; // Importăm contextul pentru a manipula coșul
+import Image from "next/image";
 
 // Definim tipul pentru prop-ul product
 interface Product {
@@ -27,7 +30,7 @@ const CartElements = ({ product }: CartElementsProps) => {
     <div className="w-full h-[20%] bg-[#F5F5F5] rounded-2xl flex p-2 text-[#333] mb-4">
       {/* Image content */}
       <div className="w-[30%] h-full bg-blue-500">
-        <img
+        <Image
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover"
