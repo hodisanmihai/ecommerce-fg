@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4 relative">
           {/* Coș de cumpărături */}
           <Link href="/" className="flex items-center">
-            <Undo2 className="w-8 h-8 text-gray-800 cursor-pointer" />
+            <Undo2 className="w-8 h-8 text-gray-800 cursor-pointer block md:hidden" />
           </Link>
           <div
             className="relative"

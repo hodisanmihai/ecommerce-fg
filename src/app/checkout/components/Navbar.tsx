@@ -58,8 +58,8 @@ const Navbar = () => {
               </span>
             )}
           </div>
-          <Link href="/" className="flex items-center">
-            <Undo2 className="w-8 h-8 text-gray-800 cursor-pointer" />
+          <Link href="/" className="flex items-center ">
+            <Undo2 className="w-8 h-8 text-gray-800 cursor-pointer block md:hidden" />
           </Link>
           {/* Buton meniu mobil */}
           <button
