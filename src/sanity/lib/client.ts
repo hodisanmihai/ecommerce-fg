@@ -2,8 +2,8 @@
 import { createClient } from "@sanity/client";
 
 const client = createClient({
-  projectId: "your_project_id", // ID-ul proiectului tău din Sanity
-  dataset: "production", // Numele dataset-ului pe care îl folosești (de obicei, `production`)
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!, // ID-ul proiectului tău din Sanity
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!, // Numele dataset-ului pe care îl folosești (de obicei, `production`)
   useCdn: true, // Folosește CDN pentru a accelera citirea datelor
 });
 
