@@ -2,9 +2,6 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 // Inițializează Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-04-30.basil", // folosește o versiune stabilă
-});
 
 // Definirea tipului pentru un articol din coș
 type CartItem = {
@@ -16,6 +13,10 @@ type CartItem = {
 export async function POST(req: Request) {
   try {
     // Extrage cartItems din corpul cererii, aplicând tipul CartItem[]
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2025-04-30.basil", // folosește o versiune stabilă
+    });
+
     const { cartItems }: { cartItems: CartItem[] } = await req.json();
 
     console.log("cartItems:", cartItems); // vezi ce primești
