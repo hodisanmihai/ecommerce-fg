@@ -20,11 +20,10 @@ const About = () => {
           {/* Titluri */}
           <div className="w-full h-auto flex flex-col items-center justify-around gap-6 mb-8">
             <h1 className="font-extrabold text-3xl md:text-[64px] leading-tight text-center">
-              Misiunea Noastră
+              Despre Noi
             </h1>
             <h3 className="font-normal text-lg md:text-[20px] text-center">
-              Angajamentul nostru este să aducem sustenabilitatea în fiecare
-              colț al casei tale.
+              Fă un pas spre un stil de viață mai verde cu produsele noastre.
             </h3>
           </div>
 
