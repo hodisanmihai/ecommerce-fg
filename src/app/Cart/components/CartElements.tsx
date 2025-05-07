@@ -2,34 +2,32 @@
 
 import React from "react";
 import { Trash2 } from "lucide-react";
-import { useCart } from "./CartContext"; // Importăm contextul pentru a manipula coșul
+import { useCart } from "./CartContext";
 import Image from "next/image";
 
-// Definim tipul pentru prop-ul product
 interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
-  quantity: number; // Adăugăm cantitatea produsului
+  quantity: number;
 }
 
 interface CartElementsProps {
-  product: Product; // Definim corect tipul pentru prop-ul product
+  product: Product;
 }
 
-// Funcția pentru rotunjirea prețului
 const roundPrice = (price: number): string => {
-  return price.toFixed(2); // Rotunjim la 2 zecimale
+  return price.toFixed(2);
 };
 
 const CartElements = ({ product }: CartElementsProps) => {
-  const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart(); // Obținem funcțiile din context
+  const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
 
   return (
-    <div className="w-full h-[20%] bg-[#F5F5F5] rounded-2xl flex p-2 text-[#333] mb-4">
-      {/* Image content */}
-      <div className="w-[30%] h-full bg-blue-500">
+    <div className="w-full bg-[#F5F5F5] rounded-2xl flex flex-col sm:flex-row p-4 text-[#333] gap-4 mb-4">
+      {/* Imaginea */}
+      <div className="w-full sm:w-[30%] aspect-square overflow-hidden rounded-xl bg-blue-500">
         <Image
           width={640}
           height={640}
@@ -39,44 +37,43 @@ const CartElements = ({ product }: CartElementsProps) => {
         />
       </div>
 
-      {/* Content elements */}
-      <div className="w-[70%] h-full">
-        {/* Top Content */}
-        <div className="w-full h-1/2 flex justify-between pl-2">
-          <h4 className="font-extrabold text-lg md:text-[16px] text-center">
-            {product.name}
-          </h4>
-          {/* Buton Trash pentru eliminarea produsului */}
+      {/* Conținut */}
+      <div className="w-full sm:w-[70%] flex flex-col justify-between">
+        {/* Titlu și buton Trash */}
+        <div className="flex justify-between items-center">
+          <h4 className="font-extrabold text-lg md:text-xl">{product.name}</h4>
           <Trash2
             className="w-6 h-6 cursor-pointer"
-            onClick={() => removeFromCart(product.id)} // Elimină produsul din coș
+            onClick={() => removeFromCart(product.id)}
           />
         </div>
 
-        {/* Bottom Content */}
-        <div className="w-full h-1/2 flex justify-between items-end pl-2">
-          <div className="flex gap-2 text-center">
-            {/* Butonul de scădere a cantității */}
-            <span
-              className="w-6 h-6 bg-white rounded-sm border-1 border-[#333333]/50 cursor-pointer"
-              onClick={() => decreaseQuantity(product.id)} // Scade cantitatea
+        {/* Control cantitate și preț */}
+        <div className="flex justify-between items-center mt-4">
+          <div className="flex items-center gap-2">
+            {/* Scade cantitatea */}
+            <button
+              className="w-8 h-8 bg-white rounded-md border border-gray-400 flex items-center justify-center text-lg font-bold"
+              onClick={() => decreaseQuantity(product.id)}
             >
               -
+            </button>
+            {/* Cantitate curentă */}
+            <span className="w-8 h-8 bg-white rounded-md border border-gray-400 flex items-center justify-center">
+              {product.quantity}
             </span>
-            <span className="w-6 h-6 bg-white rounded-sm border-1 border-[#333333]/50">
-              {product.quantity} {/* Afișăm cantitatea curentă */}
-            </span>
-            {/* Butonul de creștere a cantității */}
-            <span
-              className="w-6 h-6 bg-white rounded-sm border-1 border-[#333333]/50 cursor-pointer"
-              onClick={() => increaseQuantity(product.id)} // Crește cantitatea
+            {/* Crește cantitatea */}
+            <button
+              className="w-8 h-8 bg-white rounded-md border border-gray-400 flex items-center justify-center text-lg font-bold"
+              onClick={() => increaseQuantity(product.id)}
             >
               +
-            </span>
+            </button>
           </div>
-          <h4 className="flex gap-2">
-            <span>{roundPrice(product.price * product.quantity)}</span> RON{" "}
-            {/* Prețul total pentru produs, rotunjit la 2 zecimale */}
+
+          {/* Preț total */}
+          <h4 className="text-md font-semibold">
+            {roundPrice(product.price * product.quantity)} RON
           </h4>
         </div>
       </div>
